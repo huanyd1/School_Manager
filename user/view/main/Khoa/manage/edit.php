@@ -1,7 +1,7 @@
 <?php
 
 include "../../../../config/config.php";
-session_start();
+//session_start();
 
 $sql = "SELECT * FROM `quanlytruonghoc`.`khoa` WHERE `idKhoa` = '$_GET[idKhoa]' ";
 
