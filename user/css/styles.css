@@ -1,0 +1,14 @@
+.container {
+  width: 1225px;
+  margin: auto; }
+
+@font-face {
+  font-family: Roboto;
+  src: url("../fonts/Roboto/Roboto-Regular.ttf");
+  font-weight: normal; }
+body {
+  margin: 0px;
+  font-family: Roboto;
+  color: #333333; }
+
+/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,48 @@
+.header {
+  background: #ffffff;
+  display: flex;
+  padding: 10px 0px;
+  border-bottom: 1px solid #333333; }
+  .header .bao-logo {
+    width: 250px;
+    text-align: center; }
+    .header .bao-logo img {
+      width: 50px;
+      max-width: 100%; }
+  .header .user {
+    text-align: right;
+    width: 70%; }
+  .header .out {
+    text-align: right;
+    width: 10%;
+    padding-top: 15px; }
+    .header .out a {
+      text-decoration: unset;
+      color: #333333; }
+
+.banner img {
+  width: 100%; }
+
+.content .col {
+  display: inline-block;
+  width: 24%;
+  margin-bottom: 25px; }
+  .content .col .content-p {
+    display: block;
+    margin: auto;
+    width: 90%;
+    box-shadow: 0px 0px 20px rgba(63, 143, 186, 0.2);
+    border-radius: 15px;
+    text-decoration: none;
+    height: 260px;
+    text-align: center; }
+    .content .col .content-p p {
+      padding-top: 115px;
+      font-size: 24px;
+      color: #333333; }
+    .content .col .content-p:hover {
+      background: #47C1BF; }
+      .content .col .content-p:hover p {
+        color: #ffffff; }
+
+/*# sourceMappingURL=home.css.map */

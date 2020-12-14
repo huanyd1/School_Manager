@@ -1,0 +1,98 @@
+.header {
+  background: #ffffff;
+  display: flex;
+  padding: 10px 0px;
+  border-bottom: 1px solid #333333; }
+  .header .bao-logo {
+    width: 250px;
+    text-align: center; }
+    .header .bao-logo img {
+      width: 50px;
+      max-width: 100%; }
+  .header .user {
+    text-align: right;
+    width: 70%; }
+  .header .out {
+    text-align: right;
+    width: 10%;
+    padding-top: 15px; }
+    .header .out a {
+      text-decoration: unset;
+      color: #333333; }
+
+.banner img {
+  width: 100%; }
+
+.content {
+  display: flex;
+  margin-top: 30px; }
+  .content .left {
+    width: 20%;
+    box-shadow: 0px 0px 20px rgba(63, 143, 186, 0.2);
+    border-radius: 15px; }
+    .content .left h2 {
+      text-align: center;
+      font-size: 32px;
+      font-weight: bold;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #333333; }
+      .content .left h2 a {
+        text-decoration: none;
+        color: #333333; }
+    .content .left .ul-left {
+      padding: 15px 0px;
+      list-style: none; }
+      .content .left .ul-left .li-left {
+        padding-top: 10px;
+        padding-bottom: 10px; }
+        .content .left .ul-left .li-left a {
+          padding-left: 20px;
+          font-weight: 500;
+          font-size: 18px;
+          line-height: 22px;
+          display: block;
+          color: #333333;
+          text-decoration: unset; }
+        .content .left .ul-left .li-left:hover {
+          background: #47C1BF; }
+          .content .left .ul-left .li-left:hover a {
+            color: #ffffff; }
+      .content .left .ul-left .active {
+        background: #47C1BF; }
+        .content .left .ul-left .active a {
+          color: #ffffff; }
+  .content .right {
+    margin-left: 3%;
+    width: 77%;
+    box-shadow: 0px 0px 20px rgba(63, 143, 186, 0.2);
+    border-radius: 15px; }
+    .content .right h2 {
+      text-align: center;
+      font-size: 32px;
+      font-weight: bold;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #333333;
+      color: #333333; }
+    .content .right .form {
+      margin-top: 50px; }
+    .content .right .table {
+      margin-top: 20px; }
+      .content .right .table table {
+        border: unset;
+        width: 100%; }
+        .content .right .table table tr {
+          border-bottom: 1px solid #333333; }
+          .content .right .table table tr td {
+            text-align: center; }
+      .content .right .table .up {
+        margin-right: 20px;
+        margin-top: 20px;
+        text-align: right; }
+
+/*# sourceMappingURL=khoa.css.map */

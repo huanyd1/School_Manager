@@ -1,0 +1,62 @@
+p {
+  margin: 0px; }
+
+body {
+  background: url("../image/bg_body.jpg");
+  margin: 0px; }
+  body .form {
+    width: 450px;
+    border-radius: 5px;
+    margin: 10% auto 0px;
+    box-shadow: 0px 0px 20px rgba(63, 143, 186, 0.2); }
+    body .form .bao-logo {
+      text-align: center;
+      padding: 5px 0px;
+      background: #ffffff; }
+      body .form .bao-logo .logo {
+        width: 80px;
+        max-width: 100%; }
+    body .form form {
+      padding: 20px 20px; }
+      body .form form .bao-input {
+        margin-bottom: 15px;
+        display: flex; }
+        body .form form .bao-input .p-text {
+          padding-top: 11px;
+          font-size: 16px;
+          width: 30%; }
+        body .form form .bao-input .input-div {
+          width: 70%; }
+          body .form form .bao-input .input-div input {
+            padding-left: 12px;
+            border: unset;
+            width: 96%;
+            height: 35px;
+            border-radius: 5px; }
+            body .form form .bao-input .input-div input:focus {
+              outline: unset; }
+      body .form form .btn {
+        margin-top: 10px; }
+        body .form form .btn .submit {
+          width: 100px;
+          height: 30px;
+          margin: 0 0 0px 170px;
+          text-align: center; }
+      body .form form .a-register {
+        margin-top: 10px; }
+        body .form form .a-register .link-register {
+          margin: 0 0 0 110px;
+          color: white; }
+      body .form form .a-forgotpw {
+        margin-top: 10px; }
+        body .form form .a-forgotpw .link-forgotpw {
+          margin: 0 0 0 168px;
+          color: white; }
+      body .form form .line {
+        align-items: center;
+        border-bottom: 1px solid #6200ff;
+        display: flex;
+        margin: 20px 25px 0px 20px;
+        text-align: center; }
+
+/*# sourceMappingURL=login.css.map */
