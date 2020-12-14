@@ -32,7 +32,7 @@
             <p><?php echo $_SESSION["user"] ?></p>
         </div>
         <div class="out">
-            <a href="../login/login.php" onclick="<?php unset($_SESSION['user'])?>">Đăng xuất</a>
+            <a href="../login/login.php" onclick="<?php //unset($_SESSION['user'])?>">Đăng xuất</a>
             
         </div>
     </div>

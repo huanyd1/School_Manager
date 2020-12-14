@@ -1,7 +1,7 @@
 <?php
 $sql = "SELECT * FROM `quanlytruonghoc`.`khoa`";
 $query = mysqli_query($conn, $sql);
-session_start();
+//session_start();
 if (isset($_POST["submit"])) {
 
     $sql_search = "SELECT * FROM `quanlytruonghoc`.`khoa` WHERE `tenKhoa` LIKE '%$_POST[search]%'";
