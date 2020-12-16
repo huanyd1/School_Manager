@@ -35,9 +35,14 @@
 						require_once 'manage/delete.php';
 						break;
 
+					case 'timkiem':
+						require_once 'manage/search.php';
+						break;	
+
 					default:
 						require_once 'manage/list.php';
 						break;	
+					
 				}
 			}else{
 				require_once 'manage/list.php';

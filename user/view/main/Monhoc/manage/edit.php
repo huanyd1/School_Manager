@@ -22,7 +22,7 @@ if (isset($_POST["process"])) {
 
     $tenMonhoc = $_POST["tenMonhoc"];
 
-    $soGio = $_POST["soGio"];
+    $soTinchi = $_POST["soTinchi"];
 
     $idGiangvien = $_POST['idGiangvien'];
 
@@ -49,7 +49,7 @@ if (isset($_POST["process"])) {
 
 
 
-    $sql = "UPDATE `quanlytruonghoc`.`monhoc` SET `tenMonhoc` = '$tenMonhoc', `soGio` = '$soGio', `idGiangvien` = '$idGiangvien' where `idMonhoc` = '$_GET[idMonhoc]' ";
+    $sql = "UPDATE `quanlytruonghoc`.`monhoc` SET `tenMonhoc` = '$tenMonhoc', `soTinhchi` = $soTinchi , `idGiangvien` = '$idGiangvien' where `idMonhoc` = '$_GET[idMonhoc]' ";
 
     mysqli_query($conn, $sql);
 
@@ -158,7 +158,7 @@ if (isset($_POST["process"])) {
                             <p>Số Tín Chỉ</p>
                         </div>
                         <div class="input-right">
-                            <input type="number" min='1' max='5' name="soTinchi" value="<?php echo $row['soTinchi']; ?>">
+                            <input type="number" name="soTinchi" value="<?php echo $row['soTinchi']; ?>">
                         </div>
                     </div>
                     <div class="form-input">

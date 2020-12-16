@@ -24,21 +24,10 @@ if (!empty($_POST["btnSub"])) {
     <title>DANH SÁCH KHOA</title>
     <link rel="stylesheet" href="../../../../css/khoa.css">
     <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/khoa.js"></script>
+
 </head>
-<script>
-    function InvalidMsg(textbox) {
-    if (textbox.value == '') {
-        textbox.setCustomValidity('Vui lòng điền từ để tìm kiếm');
-    }
-    // else if (textbox.validity.typeMismatch){
-    //     textbox.setCustomValidity('please enter a valid email address');
-    // }
-    else {
-       textbox.setCustomValidity('');
-    }
-    return true;
-}
-</script>
+
 <body>
 
     <div class="header">

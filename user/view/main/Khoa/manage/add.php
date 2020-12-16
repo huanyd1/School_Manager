@@ -47,6 +47,7 @@ if (isset($_POST["process"])) {
     <link rel="stylesheet" href="../../../css/add.css">
     <link rel="stylesheet" href="../../../css/styles.css">
     <script src="../../../js/add_diemthi.js"></script>
+    <script src="../../../js/khoa.js"></script>
 </head>
 
 <body>
@@ -106,7 +107,7 @@ if (isset($_POST["process"])) {
                             <p>Tên Khoa</p>
                         </div>
                         <div class="input-right">
-                            <input type="text" placeholder="Tên khoa mới" name="tenKhoa" required="">
+                            <input type="text" placeholder="Tên khoa mới" name="tenKhoa" oninvalid="InvalidMsg(this);"oninput="InvalidMsg(this);" required="required">
                         </div>
                     </div>    
                     <div class="form-input">

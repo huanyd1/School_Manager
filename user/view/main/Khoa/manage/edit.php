@@ -126,7 +126,7 @@ if (isset($_POST["process"])) {
                     <p>Tên Khoa</p>
                 </div>
                 <div class="input-right">
-                    <input type="text" placeholder="Tên khoa" value="<?php echo $row['tenKhoa']; ?>" name="tenKhoa">
+                    <input type="text" placeholder="Tên khoa" value="<?php echo $row['tenKhoa']; ?>" name="tenKhoa" required>
                 </div>
             </div>
             <div class="form-input">
