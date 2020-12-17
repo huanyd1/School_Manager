@@ -52,6 +52,8 @@ if (isset($_POST["process"])) {
     <title>DANH SÁCH SINH VIÊN</title>
     <link rel="stylesheet" href="../../../css/add.css">
     <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/sinhvien.js"></script>
+
 </head>
 
 <body>
@@ -111,7 +113,7 @@ if (isset($_POST["process"])) {
                             <p>Tên Sinh Viên</p>
                         </div>
                         <div class="input-right">
-                            <input type="text" placeholder="Tên sinh viên mới" name="tenSinhvien">
+                            <input type="text" placeholder="Tên sinh viên mới" name="tenSinhvien" oninvalid="InvalidMsg(this);"oninput="InvalidMsg(this);" required="required">
                         </div>
                     </div>
                     <div class="form-input">

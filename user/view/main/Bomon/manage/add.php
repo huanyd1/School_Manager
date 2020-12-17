@@ -56,6 +56,8 @@ if (isset($_POST["process"])) {
     <title>DANH SÁCH BỘ MÔN</title>
     <link rel="stylesheet" href="../../../css/add.css">
     <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/bomon.js"></script>
+
 </head>
 <body>
     <div class="header">
@@ -114,7 +116,7 @@ if (isset($_POST["process"])) {
                             <p>Tên Bộ Môn</p>
                         </div>
                         <div class="input-right">
-                            <input type="text" placeholder="Tên bộ môn mới" name="tenBomon">
+                            <input type="text" placeholder="Tên bộ môn mới" name="tenBomon" oninvalid="InvalidMsg(this);"oninput="InvalidMsg(this);" required="required">
                         </div>
                     </div>    
                     <div class="form-input">

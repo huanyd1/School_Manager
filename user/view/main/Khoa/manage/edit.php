@@ -18,6 +18,7 @@ if (isset($_POST["process"])) {
     $tenKhoa =$_POST["tenKhoa"];
 
     $img = $_FILES['imgUpload']['name'];
+    
 
     if ($img != null) {
 
@@ -38,8 +39,7 @@ if (isset($_POST["process"])) {
 
     }
 
-
-    $sql = "UPDATE `quanlytruonghoc`.`khoa` SET `idKhoa` = '$idKhoa'  , `tenKhoa` = '$tenKhoa' where `idKhoa` = '$_GET[idKhoa]' ";
+    $sql = "UPDATE `quanlytruonghoc`.`khoa` SET `tenKhoa` = '$tenKhoa' where `idKhoa` = '$_GET[idKhoa]' ";
 
     mysqli_query($conn, $sql);
     
@@ -60,6 +60,8 @@ if (isset($_POST["process"])) {
     <title>DANH SÁCH KHOA</title>
     <link rel="stylesheet" href="../../../css/add.css">
     <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/khoa.js"></script>
+
 </head>
 <body>
 <div class="header">
@@ -118,7 +120,7 @@ if (isset($_POST["process"])) {
                     <p>Mã Khoa</p>
                 </div>
                 <div class="input-right">
-                    <input type="text" placeholder="Tên khoa" value="<?php echo $row['idKhoa']; ?>" name="tenKhoa">
+                    <input type="text" placeholder="Tên khoa" value="<?php echo $row['idKhoa']; ?>" name="idKhoa" readonly='true'>
                 </div>
             </div>  
             <div class="form-input">
@@ -126,7 +128,7 @@ if (isset($_POST["process"])) {
                     <p>Tên Khoa</p>
                 </div>
                 <div class="input-right">
-                    <input type="text" placeholder="Tên khoa" value="<?php echo $row['tenKhoa']; ?>" name="tenKhoa" required>
+                    <input type="text" placeholder="Tên khoa" value="<?php echo $row['tenKhoa']; ?>" name="tenKhoa" oninvalid="InvalidMsg(this);"oninput="InvalidMsg(this);" required="required">
                 </div>
             </div>
             <div class="form-input">
@@ -135,15 +137,8 @@ if (isset($_POST["process"])) {
                 </div>
                 <div class="input-right">
                 <img src="imgUpload/<?php echo $row['imgKhoa']; ?>" style="max-width: 100px;">
+                <input type='file' id="getFile" name="imgUpload">                
                 </div>
-            </div>
-            <div class="form-input">
-                <div class="text">
-                    <p></p>
-                </div>
-                <div class="input-right">
-                <button style="display:block;width:120px; height:30px;" onclick="document.getElementById('getFile').click()">Thay ảnh mới</button>
-                <input type='file' id="getFile" name="imgUpload" style="display:none">                </div>
             </div>
             <div class="sb">
                 <input type="submit" name="process" value="Update">

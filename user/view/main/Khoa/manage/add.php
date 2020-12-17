@@ -1,6 +1,5 @@
 <?php
 
-include "../../../../config/config.php";
 //session_start();
 
 if (isset($_POST["process"])) {
@@ -11,7 +10,9 @@ if (isset($_POST["process"])) {
 
     $img = $_FILES['imgUpload']['name'];
 
+    $sql_idKhoa = "SELECT * FROM `quanlytruonghoc`.`khoa` WHERE `tenKhoa` = '$tenKhoa'";
 
+    $query_idKhoa = mysqli_query($conn, $sql_idKhoa);
 
     if ($img != null) {
 
@@ -24,12 +25,25 @@ if (isset($_POST["process"])) {
 
 
         move_uploaded_file($tmp_name, $path . $img);
+    }
+
+
+    $count = mysqli_num_rows($query_idKhoa);
+    if ($count == 0) {
 
         $sql = "INSERT INTO `quanlytruonghoc`.`khoa` VALUES ('$idKhoa','$tenKhoa','$img')";
 
         mysqli_query($conn, $sql);
 
         header('location:khoa.php?page_layout=danhsach');
+    } else {
+        echo "<script>var r = confirm(\"Tên đã có trong CSDL,vẫn muốn thêm?\"); 
+        if(r == true){
+            window.location.assign('http://localhost:444/BTL_PTUDW/user/view/main/Khoa/khoa.php?page_layout=loi&tenKhoa=$tenKhoa&imgKhoa=$img')
+        }else{
+            history.back()
+        }
+        </script>";
     }
 }
 
@@ -107,17 +121,17 @@ if (isset($_POST["process"])) {
                             <p>Tên Khoa</p>
                         </div>
                         <div class="input-right">
-                            <input type="text" placeholder="Tên khoa mới" name="tenKhoa" oninvalid="InvalidMsg(this);"oninput="InvalidMsg(this);" required="required">
+                            <input type="text" placeholder="Tên khoa mới" name="tenKhoa" oninvalid="InvalidMsg(this);" oninput="InvalidMsg(this);" required="required">
                         </div>
-                    </div>    
+                    </div>
                     <div class="form-input">
                         <div class="text">
                             <p>Ảnh Khoa</p>
                         </div>
                         <div>
-                        <input type="file" name="imgUpload">
+                            <input type="file" name="imgUpload" >
                         </div>
-                    </div>  
+                    </div>
                     <div class="sb">
                         <input type="submit" name="process" value="Update">
                     </div>
