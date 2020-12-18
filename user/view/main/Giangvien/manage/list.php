@@ -1,7 +1,9 @@
 <?php
 $sql = "SELECT * FROM `quanlytruonghoc`.`giangvien`";
+$sql_count = "SELECT COUNT(idKhoa) FROM `khoa`";
 $query = mysqli_query($conn, $sql);
-session_start();
+$query_count = mysqli_query($conn,$sql_count);
+$count = mysqli_fetch_assoc($query_count);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -80,6 +82,13 @@ session_start();
                         <tbody>
                         <?php
                         $i = 1;
+                        $row = mysqli_fetch_assoc($query);
+                        if($row['idGiangvien'] < '1'){
+                            echo '
+                            <script>
+                                alert("Bạn cần đăng nhập trước");
+                               </script> ';
+                        }                        
                         while ($row = mysqli_fetch_assoc($query)) { ?>
                             <tr class="" bordercolor="#DCDCDC">
                                 <td><?php echo $row['idGiangvien']; ?></td>

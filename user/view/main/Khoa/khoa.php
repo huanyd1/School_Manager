@@ -1,10 +1,10 @@
 <?php
 require_once "../../../../config/config.php";
 session_start();
-if ($_SESSION["user"] == "") {
-	header("location:../login/login.php");
-	echo "<script>alert(\"Bạn cần đăng nhập trước\");</script>";
-}
+// if ($_SESSION["user"] == "") {
+// 	header("location:../login/login.php");
+// 	echo "<script>alert(\"Bạn cần đăng nhập trước\");</script>";
+// }
 ?>
 <!DOCTYPE html>
 <html lang="en">
