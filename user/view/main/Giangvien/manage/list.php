@@ -1,9 +1,7 @@
 <?php
 $sql = "SELECT * FROM `quanlytruonghoc`.`giangvien`";
-$sql_count = "SELECT COUNT(idKhoa) FROM `khoa`";
 $query = mysqli_query($conn, $sql);
-$query_count = mysqli_query($conn,$sql_count);
-$count = mysqli_fetch_assoc($query_count);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -86,7 +84,10 @@ $count = mysqli_fetch_assoc($query_count);
                         if($row['idGiangvien'] < '1'){
                             echo '
                             <script>
-                                alert("Bạn cần đăng nhập trước");
+                                var r = confirm("Giảng viên hiện còn trống bạn có muốn thêm giảng viên không?");
+                                if(r == true){
+                                    window.location = "giangvien.php?page_layout=them" 
+                                }else{}
                                </script> ';
                         }                        
                         while ($row = mysqli_fetch_assoc($query)) { ?>
