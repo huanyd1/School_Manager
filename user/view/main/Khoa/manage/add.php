@@ -25,6 +25,8 @@ if (isset($_POST["process"])) {
 
 
         move_uploaded_file($tmp_name, $path . $img);
+    }else{
+        $img = "logo-dhmo.jpg";
     }
 
 
@@ -70,7 +72,7 @@ if (isset($_POST["process"])) {
             <img class="logo" src="../../../image/logo.png" alt="">
         </div>
         <div class="user">
-            <p><?php echo $_SESSION["user"] ?></p>
+            <p><?php echo @$_SESSION["user"] ?></p>
         </div>
         <div class="out">
             <a href="">Đăng xuất</a>
