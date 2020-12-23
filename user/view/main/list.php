@@ -40,14 +40,39 @@ if (isset($_POST["btnSub_search"])) {
             <a href="">Đăng xuất</a>
         </div>
     </div>
-    <!-- <div class="banner">
+    <div class="banner">
         <img src="../../../image/img.jpg" alt="">
-    </div> -->
+    </div>
     <div class="container">
         <div class="content">
             <div class="left">
                 <h2><a href="">Trang chủ</a></h2>
                 <ul class="ul-left">
+<!--                    <li class="li-left">-->
+<!--                        <a class="a-left" href="">USER</a>-->
+<!--                    </li>-->
+<!--                    <li class="li-left ">-->
+<!--                        <a class="a-left" href="Khoa/khoa.php">KHOA</a>-->
+<!--                    </li>-->
+<!--                    <li class="li-left">-->
+<!--                        <a class="a-left" href="">CHUYÊN NGÀNH</a>-->
+<!--                    </li>-->
+<!--                    <li class="li-left">-->
+<!--                        <a class="a-left" href="">LỚP</a>-->
+<!--                    </li>-->
+<!--                    <li class="li-left">-->
+<!--                        <a class="a-left" href="">GIẢNG VIÊN</a>-->
+<!--                    </li>-->
+<!--                    <li class="li-left">-->
+<!--                        <a class="a-left" href="">SINH VIÊN</a>-->
+<!--                    </li>-->
+<!--                    <li class="li-left">-->
+<!--                        <a class="a-left" href="">MÔN HỌC</a>-->
+<!--                    </li>-->
+<!--                    <li class="li-left active">-->
+<!--                        <a class="a-left" href="diemthi.php?manage=manage">ĐIỂM</a>-->
+<!--                    </li>-->
+
                     <li class="li-left">
                         <a class="a-left" href="../Isadmin/list.php">USER</a>
                     </li>
@@ -81,13 +106,6 @@ if (isset($_POST["btnSub_search"])) {
                 <div class='table'>
                     <div class="search">
                         <form class="form_search" method="post" action="" >
-                            <label>Tìm kiếm theo:</label>
-                            <select>
-                                <option>Mã Sinh Viên</option>
-                                <option>Tên Sinh Viên</option>
-                                <option>Tên Môn Học</option>
-                            </select>
-                            
                             <input class="in_search" type="text" name="input_search" placeholder="Nhập từ khóa để tìm kiếm..."></input>
                             <input class="sb_search" type="submit" name="btnSub_search" value="Tìm kiếm" style="background-image: '../imgUpload/search.png';";/>
                         </form>
@@ -128,10 +146,15 @@ if (isset($_POST["btnSub_search"])) {
                                         $name_monhoc = $row_name_monhoc['tenMonhoc'];
                                         echo $name_monhoc;
 
+//                                    echo $row['idMonhoc'];
                                     ?>
                                 </td>
                                 <td><?php echo $row['lanThi']; ?></td>
                                 <td><?php echo $row['diemThi']; ?></td>
+<!--                                <td>-->
+<!--                                    <img style="width: 100px" src="imgUpload/--><?php //echo $row['imgKhoa']; ?><!--"></img>-->
+<!--                                </td>-->
+
                                 <td>
                                     <a href="diemthi.php?page_layout=sua&idSinhvien=<?php echo $row['idSinhvien']; ?>&idMonhoc=<?php echo $row['idMonhoc']; ?>">
                                         <img src="imgUpload/edit.png" alt="">
@@ -158,43 +181,3 @@ if (isset($_POST["btnSub_search"])) {
 </body>
 
 </html>
-<style>
-    .content .right .table .search {
-        margin-right: 20px;
-        text-align: right;
-    }
-
-    .content .right .table .search .form_search {
-        margin-bottom: 20px;
-    }
-
-    .content .right .table .search .form_search .in_search {
-        height: 36px;
-        border-radius: 5px;
-        border: 1px solid #777777;
-    }
-
-    .content .right .table .search .form_search .in_search:focus {
-        outline: unset;
-    }
-
-    .content .right .table .search .form_search .sb_search {
-        border: unset;
-        height: 40px;
-        border-radius: 5px;
-    }
-
-    .content .right .table .search .form_search .sb_search:focus {
-        outline: unset;
-    }
-
-    .content .right .table .search .form_search .selec_search {
-        height: 36px;
-        border-radius: 5px;
-        border: 1px solid #777777;
-    }
-
-    .content .right .table .search .form_search .selec_search:focus {
-        outline: unset;
-    }
-</style>

@@ -2,6 +2,24 @@
 $sql = "SELECT * FROM `quanlytruonghoc`.`sinhvien`";
 $query = mysqli_query($conn, $sql);
 session_start();
+if (isset($_POST["btnSub_search"])) {
+    $search = $_POST["input_search"];
+    $danhmuc = $_POST["danhmuc"];
+    if($danhmuc==1){
+        $sql = "SELECT * FROM `quanlytruonghoc`.`sinhvien` WHERE `idSinhvien` LIKE '%$search%'";
+    }elseif ($danhmuc==2){
+        $sql = "SELECT * FROM `quanlytruonghoc`.`sinhvien` WHERE `tenSinhvien` LIKE '%$search%'";
+    }else{
+        $sql = "SELECT * FROM `quanlytruonghoc`.`sinhvien` WHERE `idLop` LIKE '%$search%'";
+    }
+
+
+    $query = mysqli_query($conn, $sql);
+} else {
+    $sql_all = "SELECT * FROM `quanlytruonghoc`.`khoa`";
+
+    mysqli_query($conn, $sql_all);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,9 +45,6 @@ session_start();
             <a href="">Đăng xuất</a>
         </div>
     </div>
-    <!-- <div class="banner">
-        <img src="../../../image/img.jpg" alt="">
-    </div> -->
     <div class="container">
         <div class="content">
             <div class="left">
@@ -66,6 +81,18 @@ session_start();
                     <h2>DANH SÁCH SINH VIÊN</h2>
                 </div>
                 <div class='table'>
+                <div class="search">
+                        <form class="form_search" method="post" action="">
+                            <select class="selec_search" name="danhmuc" required="required">
+                                <option value="">Tìm kiếm theo</option>
+                                <option value="1">Mã Sinh Viên</option>
+                                <option value="2">Tên Sinh Viên</option>
+                                <option value="3">Mã Lớp</option>
+                            </select>
+                            <input class="in_search" type="text" required="required" name="input_search" placeholder="Nhập từ khóa để tìm kiếm..."></input>
+                            <input class="sb_search" type="submit" name="btnSub_search" value="Tìm kiếm" style="background-image: '../imgUpload/search.png';" ; />
+                        </form>
+                    </div>
                     <table >
                         <thead>
                         <tr>
@@ -118,3 +145,43 @@ session_start();
 </body>
 
 </html>
+<style>
+    .content .right .table .search {
+        margin-right: 20px;
+        text-align: right;
+    }
+
+    .content .right .table .search .form_search {
+        margin-bottom: 20px;
+    }
+
+    .content .right .table .search .form_search .in_search {
+        height: 36px;
+        border-radius: 5px;
+        border: 1px solid #777777;
+    }
+
+    .content .right .table .search .form_search .in_search:focus {
+        outline: unset;
+    }
+
+    .content .right .table .search .form_search .sb_search {
+        border: unset;
+        height: 40px;
+        border-radius: 5px;
+    }
+
+    .content .right .table .search .form_search .sb_search:focus {
+        outline: unset;
+    }
+
+    .content .right .table .search .form_search .selec_search {
+        height: 36px;
+        border-radius: 5px;
+        border: 1px solid #777777;
+    }
+
+    .content .right .table .search .form_search .selec_search:focus {
+        outline: unset;
+    }
+</style>

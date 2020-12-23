@@ -2,13 +2,19 @@
 $sql = "SELECT * FROM `quanlytruonghoc`.`khoa`";
 $query = mysqli_query($conn, $sql);
 //session_start();
-if (isset($_POST["submit"])) {
 
-    $sql_search = "SELECT * FROM `quanlytruonghoc`.`khoa` WHERE `tenKhoa` LIKE '%$_POST[search]%'";
-    mysqli_query($conn, $sql_search);
+if (isset($_POST["btnSub_search"])) {
+    $search = $_POST["input_search"];
+    $danhmuc = $_POST["danhmuc"];
+    if ($danhmuc == 1) {
+        $sql = "SELECT * FROM `quanlytruonghoc`.`khoa` WHERE `idKhoa` LIKE '%$search%'";
+    } else {
+        $sql = "SELECT * FROM `quanlytruonghoc`.`khoa` WHERE `tenKhoa` LIKE '%$search%'";
+    }
 
-}
-else{
+
+    $query = mysqli_query($conn, $sql);
+} else {
     $sql_all = "SELECT * FROM `quanlytruonghoc`.`khoa`";
 
     mysqli_query($conn, $sql_all);
@@ -39,9 +45,6 @@ else{
             <a href="">Đăng xuất</a>
         </div>
     </div>
-    <!-- <div class="banner">
-        <img src="../../../image/img.jpg" alt="">
-    </div> -->
     <div class="container">
         <div class="content">
             <div class="left">
@@ -77,13 +80,18 @@ else{
                 <div class='title'>
                     <h2>DANH SÁCH KHOA</h2>
                 </div>
-                <!-- <div class="search">
-                    <form method="post" action="manage/search.php">
-                        <a>Tìm kiếm Khoa:</a>
-                        <input type="text" name="search" placeholder="Nhập từ khóa để tìm kiếm..."></input>
-                        <input type="submit" name="submit" value="Tìm kiếm" />
-                </div> -->
                 <div class='table'>
+                    <div class="search">
+                        <form class="form_search" method="post" action="">
+                            <select class="selec_search" name="danhmuc" required="required">
+                                <option value="">Tìm kiếm theo</option>
+                                <option value="1">Mã Khoa</option>
+                                <option value="2">Tên Khoa</option>
+                            </select>
+                            <input class="in_search" type="text" required="required" name="input_search" placeholder="Nhập từ khóa để tìm kiếm..."></input>
+                            <input class="sb_search" type="submit" name="btnSub_search" value="Tìm kiếm" style="background-image: '../imgUpload/search.png';" ; />
+                        </form>
+                    </div>
                     <table>
                         <thead>
                             <tr>
@@ -97,16 +105,6 @@ else{
                         <tbody>
                             <?php
                             $i = 1;
-                            // $row = mysqli_fetch_assoc($query);
-                            // if($row['idKhoa'] < 1){
-                            //     echo '
-                            //     <script>
-                            //         var r = confirm("Giảng viên hiện còn trống bạn có muốn thêm giảng viên không?");
-                            //         if(r == true){
-                            //             window.location = "giangvien.php?page_layout=them" 
-                            //         }else{}
-                            //        </script> ';
-                            // }    
                             while ($row = mysqli_fetch_assoc($query)) { ?>
                                 <tr class="" bordercolor="#DCDCDC">
                                     <td><?php echo $row['idKhoa']; ?></td>
@@ -133,6 +131,8 @@ else{
                     <div class="up">
                         <a href="http://localhost:444/BTL_PTUDW/user/view/main/Khoa/khoa.php?page_layout=them"><button>Thêm Khoa</button></a>
                     </div>
+                    <a>1</a><a>2</a>
+
                 </div>
             </div>
         </div>
@@ -141,3 +141,44 @@ else{
 </body>
 
 </html>
+
+<style>
+    .content .right .table .search {
+        margin-right: 20px;
+        text-align: right;
+    }
+
+    .content .right .table .search .form_search {
+        margin-bottom: 20px;
+    }
+
+    .content .right .table .search .form_search .in_search {
+        height: 36px;
+        border-radius: 5px;
+        border: 1px solid #777777;
+    }
+
+    .content .right .table .search .form_search .in_search:focus {
+        outline: unset;
+    }
+
+    .content .right .table .search .form_search .sb_search {
+        border: unset;
+        height: 40px;
+        border-radius: 5px;
+    }
+
+    .content .right .table .search .form_search .sb_search:focus {
+        outline: unset;
+    }
+
+    .content .right .table .search .form_search .selec_search {
+        height: 36px;
+        border-radius: 5px;
+        border: 1px solid #777777;
+    }
+
+    .content .right .table .search .form_search .selec_search:focus {
+        outline: unset;
+    }
+</style>

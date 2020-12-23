@@ -1,16 +1,18 @@
 
 <?php
+
     include '../../../config/config.php';    
     session_start();
+
     $isAdmin = $_SESSION["user"];
-    $sql = "SELECT * FROM `quanlytruonghoc`.`user` WHERE `username` = '$isAdmin'";
-    $result_isAdmin = mysqli_query($conn,$sql);
 
-
-    if ($_SESSION["user"] ==""){
+    if(!$isAdmin){
         header("location:../login/login.php");
-        echo "<script>alert(\"Bạn cần đăng nhập trước\");</script>";
     }
+
+    $sql = "SELECT `isAdmin` FROM `quanlytruonghoc`.`user` WHERE `username` = '$isAdmin'";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($result);
 ?>
 <!doctype html>
 <html lang="en">
@@ -32,20 +34,17 @@
             <p><?php echo $_SESSION["user"] ?></p>
         </div>
         <div class="out">
-            <a href="../login/login.php" onclick="<?php //unset($_SESSION['user'])?>">Đăng xuất</a>
+            <a href="log_out.php">Đăng xuất</a>
             
         </div>
     </div>
-    <!-- <div class="banner">
+    <div class="banner">
         <img src="../../image/img.jpg" alt="">
-    </div> -->
+    </div>
     <div class="container">
         <div class="content">
             <div class="col">
-                <a href="Isadmin/list.php" class="content-p"<?php while ($row = mysqli_fetch_assoc($result_isAdmin)){
-                    if($row['isAdmin'] == '0'){
-                    echo 'style="visibility:hidden;"';
-                    }} ?>>
+                <a href="Isadmin/list.php" class="content-p"<?php if($row['isAdmin'] = '0'){echo 'style="visibility:hidden;"';} ?> >
                     <p>USER</p>
                 </a>
 
@@ -68,7 +67,7 @@
 
             </div>
             <div class="col">
-                <a href="Giangvien/giangvien.php" class="content-p">
+                <a href="" class="content-p">
                     <p>GIẢNG VIÊN</p>
                 </a>
 
@@ -86,10 +85,9 @@
 
             </div>
             <div class="col">
-                <a href="Diemthi/diemthi.php" class="content-p">
+                <a href="diemthi/diemthi.php" class="content-p">
                     <p>ĐIỂM</p>
                 </a>
-
             </div>
 
         </div>

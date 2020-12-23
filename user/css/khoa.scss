@@ -88,6 +88,7 @@
     width: 77%;
     box-shadow: 0px 0px 20px rgba(63, 143, 186, 0.2);
     border-radius: 15px;
+
     h2{
       text-align: center;
       font-size: 32px;
@@ -104,6 +105,29 @@
     }
     .table{
       margin-top: 20px;
+      .search{
+        margin-right: 20px;
+        text-align: right;
+        .form_search{
+          margin-bottom: 20px;
+          .in_search{
+            height: 36px;
+            border-radius: 5px;
+            border: 1px solid #777777;
+            &:focus{
+              outline: unset;
+            }
+          }
+          .sb_search{
+            border: unset;
+            height: 40px;
+            border-radius: 5px;
+            &:focus{
+              outline: unset;
+            }
+          }
+        }
+      }
       table{
         border : unset;
         width: 100%;

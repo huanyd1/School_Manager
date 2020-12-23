@@ -15,9 +15,21 @@ if (isset($_POST["process"])) {
 
 //    lấy tên sinh viên
 
+
+
+
+
+
 //    $name_sv =
 
     $idMonhoc= $_POST["idMonhoc"];
+
+    $sql_namemonhoc = "SELECT * FROM `quanlytruonghoc`.`monhoc` where idMonhoc = ".$idMonhoc;
+    $query_name_monhoc = mysqli_query($conn, $sql_namemonhoc);
+    $row_name_monhoc = mysqli_fetch_assoc($query_name_monhoc);
+    $name_monhoc = $row_name_monhoc['tenMonhoc'];
+
+
 
     $lanThi = $_POST["lanThi"];
 
@@ -25,12 +37,35 @@ if (isset($_POST["process"])) {
 
 //    var_dump($diemThi);
 
-    $sql = "INSERT INTO `quanlytruonghoc`.`diemthi` VALUES ('$idSinhvien','$idMonhoc','$lanThi','$diemThi')";
-
+    $sql = "INSERT INTO `quanlytruonghoc`.`diemthi` VALUES ('$idSinhvien','$idMonhoc','$name_monhoc','$lanThi','$diemThi')";
+//var_dump($sql);die;
     mysqli_query($conn, $sql);
 
     header('location:diemthi.php?page_layout=danhsach');
 
+//    $img = $_FILES['imgUpload']['name'];
+
+
+//
+//    if ($img != null) {
+//
+//
+//
+//
+//
+//        $path = "imgUpload/";
+//
+//        $tmp_name = $_FILES['imgUpload']['tmp_name'];
+//
+//        $img = $_FILES['imgUpload']['name'];
+//
+//
+//
+//        move_uploaded_file($tmp_name, $path.$img);
+//
+//
+//
+//    }
 
 }
 
@@ -44,7 +79,7 @@ if (isset($_POST["process"])) {
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>DANH SÁCH ĐIỂM THI</title>
+    <title>DANH SÁCH KHOA</title>
     <link rel="stylesheet" href="../../../css/add.css">
     <link rel="stylesheet" href="../../../css/styles.css">
     <script src="../../../js/add_diemthi.js"></script>
@@ -55,25 +90,25 @@ if (isset($_POST["process"])) {
             <img class="logo" src="../../../image/logo.png" alt="">
         </div>
         <div class="user">
-            <p><?php echo @$_SESSION["user"] ?></p>
+            <p><?php echo $_SESSION["user"] ?></p>
         </div>
         <div class="out">
             <a href="">Đăng xuất</a>
         </div>
     </div>
-    <!-- <div class="banner">
+    <div class="banner">
         <img src="../../image/img.jpg" alt="">
-    </div> -->
+    </div>
     <div class="container">
         <div class="content">
             <div class="left">
                 <h2><a href="">Trang chủ</a></h2>
                 <ul class="ul-left">
                     <li class="li-left">
-                        <a class="a-left" href="../isAdmin/list.php">USER</a>
+                        <a class="a-left" href="../Isadmin/list.php">USER</a>
                     </li>
                     <li class="li-left ">
-                        <a class="a-left" href="../Khoa/khoa.php">KHOA</a>
+                        <a class="a-left" href="../khoa.php">KHOA</a>
                     </li>
                     <li class="li-left">
                         <a class="a-left" href="../Bomon/bomon.php">BỘ MÔN</a>
@@ -91,13 +126,16 @@ if (isset($_POST["process"])) {
                         <a class="a-left" href="../Monhoc/monhoc.php">MÔN HỌC</a>
                     </li>
                     <li class="li-left active">
-                        <a class="a-left" href="../Diemthi/diemthi.php">ĐIỂM</a>
+                        <a class="a-left" href="diemthi.php">ĐIỂM</a>
                     </li>
+<!--                    <li class="li-left active">-->
+<!--                        <a class="a-left" href="diemthi.php?manage=manage">ĐIỂM</a>-->
+<!--                    </li>-->
                 </ul>
             </div>
             <div class="right">
                 <div class='title'>
-                    <h2>THÊM THÔNG TIN ĐIỂM</h2>
+                    <h2>THÊM ĐIỂM</h2>
                 </div>
                 <form class="form" name="add" action="" method="post" enctype="multipart/form-data" onsubmit="return check()">
 
@@ -106,7 +144,7 @@ if (isset($_POST["process"])) {
                             <p>Tên Sinh viên</p>
                         </div>
                         <div class="input-right">
-                            <select name="idSinhvien">
+                            <select name="idSinhvien" required="required">
                                 <option value="">Tên sinh viên</option>
                                 <?php
                                 while($row_id_sv = mysqli_fetch_assoc($query_id_sv)){?>
@@ -119,7 +157,7 @@ if (isset($_POST["process"])) {
                             <p>Tên môn học</p>
                         </div>
                         <div class="input-right">
-                            <select name="idMonhoc">
+                            <select name="idMonhoc" required="required">
                                 <option value="">Tên môn học</option>
                                 <?php
                                 while($row_id_monhoc = mysqli_fetch_assoc($query_id_monhoc)){?>
@@ -134,7 +172,7 @@ if (isset($_POST["process"])) {
                             <p>Lần thi</p>
                         </div>
                         <div class="input-right">
-                            <input type="number" min = '1' max = '2' name="lanThi" value="1" placeholder="Lần thi">
+                            <input type="text" name="lanThi" value="" placeholder="Lần thi" required="required">
                         </div>
                     </div>
 
@@ -143,7 +181,7 @@ if (isset($_POST["process"])) {
                             <p>Điểm thi</p>
                         </div>
                         <div class="input-right">
-                            <input type="number" name="diemthi_sv" min = '1' max = '10' value="" placeholder="Điểm thi">
+                            <input type="text" name="diemthi_sv" value="" placeholder="Điểm thi" required="required">
                         </div>
                     </div>
 

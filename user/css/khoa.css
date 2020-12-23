@@ -83,6 +83,23 @@
       margin-top: 50px; }
     .content .right .table {
       margin-top: 20px; }
+      .content .right .table .search {
+        margin-right: 20px;
+        text-align: right; }
+        .content .right .table .search .form_search {
+          margin-bottom: 20px; }
+          .content .right .table .search .form_search .in_search {
+            height: 36px;
+            border-radius: 5px;
+            border: 1px solid #777777; }
+            .content .right .table .search .form_search .in_search:focus {
+              outline: unset; }
+          .content .right .table .search .form_search .sb_search {
+            border: unset;
+            height: 40px;
+            border-radius: 5px; }
+            .content .right .table .search .form_search .sb_search:focus {
+              outline: unset; }
       .content .right .table table {
         border: unset;
         width: 100%; }

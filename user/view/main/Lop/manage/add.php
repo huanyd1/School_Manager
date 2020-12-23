@@ -10,6 +10,8 @@ if (isset($_POST["process"])) {
     $idLop = '';
 
     $tenLop = $_POST["tenLop"];
+     $monhoc = $_POST["monhoc"];
+     $lopphu = $_POST["lopphu"];
 
     $idBomon = $_POST["idBomon"];
 
@@ -17,25 +19,26 @@ if (isset($_POST["process"])) {
 
 
 
-    if ($img != null) {
+    
 
 
-        $path = "imgUpload/";
+    $path = "imgUpload/";
 
-        $tmp_name = $_FILES['imgUpload']['tmp_name'];
+    $tmp_name = $_FILES['imgUpload']['tmp_name'];
 
-        $img = $_FILES['imgUpload']['name'];
+    $img = $_FILES['imgUpload']['name'];
 
 
 
-        move_uploaded_file($tmp_name, $path . $img);
+    move_uploaded_file($tmp_name, $path . $img);
 
-        $sql = "INSERT INTO `quanlytruonghoc`.`lop` VALUES ('$idLop','$tenLop','$idBomon','$img')";
+    $sql = "INSERT INTO `quanlytruonghoc`.`lop` VALUES ('$idLop','$tenLop','$idBomon','$img','$monhoc','$lopphu')";
+    // var_dump($)
 
-        mysqli_query($conn, $sql);
+    mysqli_query($conn, $sql);
 
-        header('location:lop.php?page_layout=danhsach');
-    }
+    header('location:lop.php?page_layout=danhsach');
+    
 }
 
 
@@ -94,6 +97,7 @@ if (isset($_POST["process"])) {
                     <li class="li-left">
                         <a class="a-left" href="../Monhoc/monhoc.php">MÔN HỌC</a>
                     </li>
+
                     <li class="li-left">
                         <a class="a-left" href="../Diemthi/diemthi.php">ĐIỂM</a>
                     </li>
@@ -110,8 +114,24 @@ if (isset($_POST["process"])) {
                             <p>Tên Lớp</p>
                         </div>
                         <div class="input-right">
-                            <input type="text" placeholder="Tên lớp mới" name="tenLop">
+                            <input type="text" placeholder="Tên lớp mới" name="tenLop" required="required">
                         </div>
+                    </div>
+                    <div class="form-input">
+                        <div class="text">
+                            <p>Môn Học</p>
+                        </div>
+                        <div class="input-right">
+                            <input type="text" placeholder="Tên môn học" name="monhoc" required="required">
+                        </div>
+                    </div>
+                    <div class="form-input">
+                        <div class="text">
+                            <p>Lớp Phụ</p>
+                        </div>
+                        <div class="input-right">
+                            <input type="text" placeholder="Tên Lớp Phụ" name="lopphu" required="required">
+                        </div>    
                     </div>
                     <div class="form-input">
                         <div class="text">
@@ -126,7 +146,7 @@ if (isset($_POST["process"])) {
                             <p>Lớp của Bộ môn</p>
                         </div>
                         <div class="input-right">
-                            <select name="idBomon">
+                            <select name="idBomon" required="required">
                                 <option value="">Tên Bộ Môn</option>
                                 <?php
                                 while ($row_idBomon = mysqli_fetch_assoc($query_idBomon)) { ?>

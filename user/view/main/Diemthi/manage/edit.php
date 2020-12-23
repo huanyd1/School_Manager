@@ -81,15 +81,15 @@ if (isset($_POST["process"])) {
         <img class="logo" src="../../../image/logo.png" alt="">
     </div>
     <div class="user">
-        <p><?php echo @$_SESSION["user"] ?></p>
+        <p><?php echo $_SESSION["user"] ?></p>
     </div>
     <div class="out">
         <a href="">Đăng xuất</a>
     </div>
 </div>
-<!-- <div class="banner">
+<div class="banner">
     <img src="../../image/img.jpg" alt="">
-</div> -->
+</div>
 <div class="container">
     <div class="content">
         <div class="left">
@@ -98,7 +98,7 @@ if (isset($_POST["process"])) {
                 <li class="li-left">
                     <a class="a-left" href="">USER</a>
                 </li>
-                <li class="li-left active">
+                <li class="li-left ">
                     <a class="a-left" href="Khoa/khoa.php">KHOA</a>
                 </li>
                 <li class="li-left">
@@ -116,8 +116,8 @@ if (isset($_POST["process"])) {
                 <li class="li-left">
                     <a class="a-left" href="">MÔN HỌC</a>
                 </li>
-                <li class="li-left">
-                    <a class="a-left" href="">ĐIỂM</a>
+                <li class="li-left active">
+                    <a class="a-left" href="diemthi.php?manage=manage">ĐIỂM</a>
                 </li>
             </ul>
         </div>
