@@ -13,6 +13,8 @@ if (isset($_POST["process"])) {
 
     $idBomon = $_POST["idBomon"];
 
+    $chucVu = $_POST["chucVu"];
+
     $img = $_FILES['imgUpload']['name'];
 
 
@@ -31,16 +33,14 @@ if (isset($_POST["process"])) {
 
 
 
-        move_uploaded_file($tmp_name, $path.$img);
+        move_uploaded_file($tmp_name, $path . $img);
 
-        $sql = "INSERT INTO `quanlytruonghoc`.`giangvien` VALUES ('$idGiangvien','$tenGiangvien','$idBomon','$img')";
+        $sql = "INSERT INTO `quanlytruonghoc`.`giangvien` VALUES ('$idGiangvien','$tenGiangvien','$idBomon','$chucVu','$img')";
 
         mysqli_query($conn, $sql);
 
         header('location:giangvien.php?page_layout=danhsach');
-
     }
-
 }
 
 
@@ -48,15 +48,16 @@ if (isset($_POST["process"])) {
 ?>
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>DANH SÁCH BỘ MÔN</title>
     <link rel="stylesheet" href="../../../css/add.css">
     <link rel="stylesheet" href="../../../css/styles.css">
 </head>
+
 <body>
     <div class="header">
         <div class="bao-logo">
@@ -109,33 +110,47 @@ if (isset($_POST["process"])) {
                 </div>
                 <form class="form" action="" method="post" enctype="multipart/form-data">
 
-                <div class="form-input">
+                    <div class="form-input">
                         <div class="text">
                             <p>Tên Giảng Viên</p>
                         </div>
                         <div class="input-right">
                             <input type="text" placeholder="Tên giảng viên mới" name="tenGiangvien">
                         </div>
-                    </div>    
+                    </div>
                     <div class="form-input">
                         <div class="text">
                             <p>Ảnh Giảng Viên</p>
                         </div>
                         <div>
-                        <input type="file" name="imgUpload">
+                            <input type="file" name="imgUpload">
                         </div>
-                    </div>  
+                    </div>
                     <div class="form-input">
                         <div class="text">
                             <p>Giảng viên của Bộ môn</p>
                         </div>
                         <div class="input-right">
-                            <select name="idMonhoc">
+                            <select name="idBomon">
                                 <option value="">Tên Bộ Môn</option>
                                 <?php
-                                while($row_idBomon = mysqli_fetch_assoc($query_idBomon)){?>
-                                    <option value="<?php echo $row_idBomon['idBomon'];?>"><?php echo $row_idBomon['tenBomon'];?></option>
+                                while ($row_idBomon = mysqli_fetch_assoc($query_idBomon)) { ?>
+                                    <option value="<?php echo $row_idBomon['idBomon']; ?>"><?php echo $row_idBomon['tenBomon']; ?></option>
                                 <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-input">
+                        <div class="text">
+                            <p>Chức Vụ</p>
+                        </div>
+                        <div class="input-right">
+                            <select name="chucVu">
+                                <option>A</option>
+                                <option>A</option>
+                                <option>A</option>
+                                <option>A</option>
+                                <option>A</option>
                             </select>
                         </div>
                     </div>
@@ -148,5 +163,5 @@ if (isset($_POST["process"])) {
         </div>
     </div>
 </body>
-</html>
 
+</html>

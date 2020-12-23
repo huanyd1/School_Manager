@@ -97,6 +97,16 @@ else{
                         <tbody>
                             <?php
                             $i = 1;
+                            // $row = mysqli_fetch_assoc($query);
+                            // if($row['idKhoa'] < 1){
+                            //     echo '
+                            //     <script>
+                            //         var r = confirm("Giảng viên hiện còn trống bạn có muốn thêm giảng viên không?");
+                            //         if(r == true){
+                            //             window.location = "giangvien.php?page_layout=them" 
+                            //         }else{}
+                            //        </script> ';
+                            // }    
                             while ($row = mysqli_fetch_assoc($query)) { ?>
                                 <tr class="" bordercolor="#DCDCDC">
                                     <td><?php echo $row['idKhoa']; ?></td>

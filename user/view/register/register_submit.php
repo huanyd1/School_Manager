@@ -23,7 +23,7 @@
             echo "Tài khoản đã tồn tại, vui lòng nhập tài khoản khác";
             die();
         }
-        $sql = "INSERT INTO `quanlytruonghoc`.`user` VALUES ('','$name','$name_ten','$email','$username','$pwd','$gender','$note')";
+        $sql = "INSERT INTO `quanlytruonghoc`.`user` VALUES ('','$name','$name_ten','$email','$username','$pwd','$gender','$note',0)";
         mysqli_query($conn,$sql);
         header('location:../login/login.php');
         echo "Đã đăng ký thành công";

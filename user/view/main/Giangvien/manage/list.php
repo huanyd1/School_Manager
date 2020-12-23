@@ -73,6 +73,7 @@ $query = mysqli_query($conn, $sql);
                             <th>Tên Giảng Vên</th>
                             <th>Ảnh</th>
                             <th>Mã Bộ Môn</th>
+                            <th>Chức Vụ</th>
                             <th>Sửa</th>
                             <th>Xóa</th>
                         </tr>
@@ -98,6 +99,7 @@ $query = mysqli_query($conn, $sql);
                                     <img style="width: 100px" src="imgUpload/<?php echo $row['imgGiangvien']; ?>"></img>
                                 </td>
                                 <td><?php echo $row['idBomon']; ?></td>
+                                <td><?php echo $row['chucVu']; ?></td>
                                 <td>
                                     <a href="giangvien.php?page_layout=sua&idGiangvien=<?php echo $row['idGiangvien']; ?>">
                                         <img src="imgUpload/edit.png" alt="">
