@@ -38,9 +38,9 @@
             
         </div>
     </div>
-    <div class="banner">
+    <!-- <div class="banner">
         <img src="../../image/img.jpg" alt="">
-    </div>
+    </div> -->
     <div class="container">
         <div class="content">
             <div class="col">

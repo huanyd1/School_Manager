@@ -29,7 +29,9 @@
 					case 'xoa':
 						require_once 'manage/delete.php';
 						break;
-
+					case 'loi':
+						require_once 'manage/add_error.php';
+						break;
 					default:
 						require_once 'manage/list.php';
 						break;	

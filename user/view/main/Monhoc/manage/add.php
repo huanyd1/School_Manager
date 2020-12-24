@@ -15,12 +15,14 @@ if (isset($_POST["process"])) {
 
     $idGiangvien = $_POST["idGiangvien"];
 
+    $tenGiangvien = $_POST["tenGiangvien"];
+
+    $sql_idMonhoc = "SELECT * FROM `quanlytruonghoc`.`monhoc` WHERE `tenMonhoc` = '$tenMonhoc'";
+
+    $query_idMonhoc = mysqli_query($conn, $sql_idMonhoc);
+
     $img = $_FILES['imgUpload']['name'];
-
-
-
-    if ($img != null) {
-
+    if ($img !=null) {
         $path = "imgUpload/";
 
         $tmp_name = $_FILES['imgUpload']['tmp_name'];
@@ -28,14 +30,32 @@ if (isset($_POST["process"])) {
         $img = $_FILES['imgUpload']['name'];
 
         move_uploaded_file($tmp_name, $path . $img);
+    }else{
+        $img = "html.png";
+    }
+
+
+
+        
+    $count = mysqli_num_rows($query_idMonhoc);
+    if ($count == 0) {
 
         $sql = "INSERT INTO `quanlytruonghoc`.`monhoc` VALUES ('$idMonhoc','$tenMonhoc','$soTinchi','$idGiangvien','$img')";
 
         mysqli_query($conn, $sql);
 
         header('location:monhoc.php?page_layout=danhsach');
+    } else {
+        echo "<script>var r = confirm(\"Tên đã có trong CSDL,vẫn muốn thêm?\"); 
+        if(r == true){
+            window.location.assign('http://localhost:8910/BTL_PTUDW/user/view/main/Monhoc/monhoc.php?page_layout=loi&tenMonhoc=$tenMonhoc&soTinchi=$soTinchi&idGiangvien=$idGiangvien&imgMonhoc=$img')
+        }else{
+            history.back()
+        }
+        </script>";
     }
-}
+    }
+
 
 
 ?>
@@ -108,7 +128,7 @@ if (isset($_POST["process"])) {
                             <p>Tên Môn Học</p>
                         </div>
                         <div class="input-right">
-                            <input type="text" placeholder="Tên môn học mới" name="tenMonhoc">
+                            <input type="text" placeholder="Tên môn học mới" name="tenMonhoc" required="required">
                         </div>
                     </div>
                     <div class="form-input">
@@ -124,15 +144,16 @@ if (isset($_POST["process"])) {
                             <p>Số Tín Chỉ</p>
                         </div>
                         <div class="input-right">
-                            <input type="number" min='1' max='5' name="soTinchi">
+                            <input type="number" min='1' max='5' name="soTinchi" required="required">
                         </div>
+
                     </div>
                     <div class="form-input">
                         <div class="text">
                             <p>Môn học của Giảng viên</p>
                         </div>
                         <div class="input-right">
-                            <select name="idGiangvien">
+                            <select name="idGiangvien" required="required">
                                 <option value="">Tên Giảng Viên</option>
                                 <?php
                                 while ($row_idGiangvien = mysqli_fetch_assoc($query_idGiangvien)) { ?>
@@ -140,7 +161,8 @@ if (isset($_POST["process"])) {
                                 <?php } ?>
                             </select>
                         </div>
-                    </div>
+                        </div>
+                        
                     <div class="sb">
                         <input type="submit" name="process" value="Update">
                     </div>

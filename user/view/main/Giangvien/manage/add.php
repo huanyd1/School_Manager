@@ -13,17 +13,17 @@ if (isset($_POST["process"])) {
     $idGiangvien = '';
 
     $tenGiangvien = $_POST["tenGiangvien"];
+    $chucVu = $_POST["chucVu"];
 
 
     $idBomon = $_POST["idBomon"];
     // var_dump($idBomon);
-    $sql_namebomon = "SELECT * FROM `quanlytruonghoc`.`bomon` where idBomon = ".$idBomon;
-    // var_dump($sql_namebomon);die;
-    $query_name_monhoc = mysqli_query($conn,  $sql_namebomon);
-    $row_name_monhoc = mysqli_fetch_assoc($query_name_monhoc);
-    $name_bomon = $row_name_monhoc['tenBomon'];
-    // var_dump($name_bomon);die;
+ 
     $img = $_FILES['imgUpload']['name'];
+
+    $sql_idGiangvien = "SELECT * FROM `quanlytruonghoc`.`giangvien` WHERE `tenGiangvien` = '$tenGiangvien' AND `idBomon`= '$idBomon'";
+
+    $query_idGiangvien = mysqli_query($conn, $sql_idGiangvien);
 
 
 
@@ -40,19 +40,30 @@ if (isset($_POST["process"])) {
 
     
 
-
+        $img = $_FILES["imgUpload"]['name'];
 
         move_uploaded_file($tmp_name, $path.$img);
 
-        $sql = "INSERT INTO `quanlytruonghoc`.`giangvien` VALUES ('$idGiangvien','$tenGiangvien','$idBomon','$name_bomon','$chucvu','$img')";
-        // var_dump($sql);die;
+    }else {
+        $img = "kien.jpg";
+    }
+    $count = mysqli_num_rows($query_idGiangvien);
+    if ($count == 0) {
+
+        $sql = "INSERT INTO `quanlytruonghoc`.`giangvien` VALUES ('$idGiangvien','$tenGiangvien',$idBomon,'$chucVu','$img')";
 
         mysqli_query($conn, $sql);
 
         header('location:giangvien.php?page_layout=danhsach');
-
+    } else {
+        echo "<script>var r = confirm(\"Tên đã có trong CSDL,vẫn muốn thêm?\"); 
+        if(r == true){
+            window.location.assign('http://localhost:83/BaitaplonWeb/user/view/main/Giangvien/giangvien.php?page_layout=loi&tenGiangvien=$tenGiangvien&idBomon=$idBomon&chucVu=$chucVu&imgGiangvien=$img')
+        }else{
+            history.back()
+        }
+        </script>";
     }
-
 }
 
 
@@ -135,7 +146,7 @@ if (isset($_POST["process"])) {
                             <p>Chức Vụ</p>
                         </div>
                         <div class="input-right">
-                            <input type="text" placeholder="Chức vụ" name="chucvu" required="required">
+                            <input type="text" placeholder="Chức vụ" name="chucVu" required="required">
                         </div>
                     </div>  
                     <div class="form-input">

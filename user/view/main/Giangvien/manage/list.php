@@ -1,6 +1,15 @@
 <?php
 
 session_start();
+// if (isset($_POST["btnSub_search"])) {
+//     $search = $_POST["input_search"];
+//     $sql = "SELECT * FROM `quanlytruonghoc`.`giangvien` WHERE `tenGiangvien` LIKE '%$search%' or 'tenBomon' LIKE '%$search%'";
+//     // var_dump($sql);die;
+//     $query = mysqli_query($conn, $sql);
+// }else{
+//     $sql = "SELECT * FROM `quanlytruonghoc`.`giangvien`";
+// $query = mysqli_query($conn, $sql);
+// }
 if (isset($_POST["btnSub_search"])) {
     $search = $_POST["input_search"];
     $danhmuc = $_POST["danhmuc"];
@@ -28,8 +37,17 @@ if (isset($_POST["btnSub_search"])) {
     <title>DANH SÁCH BỘ MÔN</title>
     <link rel="stylesheet" href="../../../css/khoa.css">
     <link rel="stylesheet" href="../../../css/styles.css">
-</head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
 
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js">
+    </script>
+</head>
+<script !src="">
+    $(document).ready( function () {
+        $('#table_id').DataTable();
+    } );
+</script>
 <body>
 
     <div class="header">
@@ -94,7 +112,7 @@ if (isset($_POST["btnSub_search"])) {
                             <input class="sb_search" type="submit" name="btnSub_search" value="Tìm kiếm" style="background-image: '../imgUpload/search.png';";/>
                         </form>
                     </div>
-                    <table >
+                    <table id="table_id">
                     
                         <thead>
                         <tr>
@@ -118,8 +136,7 @@ if (isset($_POST["btnSub_search"])) {
                                 <td>
                                     <img style="width: 100px" src="imgUpload/<?php echo $row['imgGiangvien']; ?>"></img>
                                 </td>
-                                <td><?php echo $row['idGiangvien']; ?></td>
-
+                                <td><?php echo $row['idBomon']; ?></td>
                                 <td><?php echo $row['chucVu']; ?></td>
                                 <td>
                                     <a href="giangvien.php?page_layout=sua&idGiangvien=<?php echo $row['idGiangvien']; ?>">
@@ -137,7 +154,7 @@ if (isset($_POST["btnSub_search"])) {
                         </tbody>
                     </table>
                     <div class="up">
-                        <a href="http://localhost:444/BTL_PTUDW/user/view/main/Giangvien/giangvien.php?page_layout=them"><button>Thêm Giảng Viên</button></a>
+                        <a href="http://localhost:83/BaitaplonWeb/user/view/main/Giangvien/giangvien.php?page_layout=them"><button>Thêm Giảng Viên</button></a>
                     </div>
                 </div>
             </div>

@@ -2,6 +2,23 @@
 $sql = "SELECT * FROM `quanlytruonghoc`.`monhoc`";
 $query = mysqli_query($conn, $sql);
 session_start();
+if (isset($_POST["btnSub_search"])) {
+    $search = $_POST["input_search"];
+    $danhmuc = $_POST["danhmuc"];
+    if($danhmuc==1){
+        $sql = "SELECT * FROM `quanlytruonghoc`.`monhoc` WHERE `tenMonhoc` LIKE '%$search%'";
+    }elseif ($danhmuc==2){
+        $sql = "SELECT * FROM `quanlytruonghoc`.`monhoc` WHERE `tenGiangvien` LIKE '%$search%'";
+    }else{
+        $sql = "SELECT * FROM `quanlytruonghoc`.`monhoc` WHERE `tenMonhoc` LIKE '%$search%'";
+    }
+
+
+    $query = mysqli_query($conn, $sql);
+}else{
+    $sql = "SELECT * FROM `quanlytruonghoc`.`monhoc`";
+    $query = mysqli_query($conn, $sql);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +29,17 @@ session_start();
     <title>DANH SÁCH MÔN HỌC</title>
     <link rel="stylesheet" href="../../../css/khoa.css">
     <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js">
+    </script>
 </head>
+<script !src="">
+    $(document).ready( function () {
+        $('#table_id').DataTable();
+    } );
+</script>
 
 <body>
 
@@ -27,9 +54,6 @@ session_start();
             <a href="">Đăng xuất</a>
         </div>
     </div>
-    <!-- <div class="banner">
-        <img src="../../../image/img.jpg" alt="">
-    </div> -->
     <div class="container">
         <div class="content">
             <div class="left">
@@ -66,14 +90,25 @@ session_start();
                     <h2>DANH SÁCH MÔN HỌC</h2>
                 </div>
                 <div class='table'>
-                    <table >
+                <div class="search">
+                        <form class="form_search" method="post" action="" >
+                            <select class="selec_search" name="danhmuc" required="required">
+                                <option value="">Tìm kiếm theo</option>
+                                <option value="1">Tên môn học</option>
+                                <option value="2">Tên giảng viên</option>
+                            </select>
+                            <input class="in_search" type="text" required="required" name="input_search" placeholder="Nhập từ khóa để tìm kiếm..."></input>
+                            <input class="sb_search" type="submit" name="btnSub_search" value="Tìm kiếm" style="background-image: '../imgUpload/search.png';";/>
+                        </form>
+                    </div>
+                    <table id="table_id">
                         <thead>
                         <tr>
                             <th>Mã Môn Học</th>
                             <th>Tên Môn Học</th>
                             <th>Số Tín Chỉ</th>
                             <th>Ảnh Môn Học</th>
-                            <th>Mã Giảng Viên</th>
+                            <th>Mã giảng viên</th>
                             <th>Sửa</th>
                             <th>Xóa</th>
                         </tr>
@@ -86,6 +121,7 @@ session_start();
                                 <td><?php echo $row['idMonhoc']; ?></td>
                                 <td><?php echo $row['tenMonhoc']; ?></td>
                                 <td><?php echo $row['soTinchi']; ?></td>
+                                
                                 <td>
                                     <img style="width: 100px" src="imgUpload/<?php echo $row['imgMonhoc']; ?>"></img>
                                 </td>
@@ -106,7 +142,7 @@ session_start();
                         </tbody>
                     </table>
                     <div class="up">
-                        <a href="http://localhost:444/BTL_PTUDW/user/view/main/Monhoc/monhoc.php?page_layout=them"><button>Thêm Môn Học</button></a>
+                        <a href="http://localhost:8910/BTL_PTUDW/user/view/main/Monhoc/monhoc.php?page_layout=them"><button>Thêm Môn Học</button></a>
                     </div>
                 </div>
             </div>
@@ -116,3 +152,28 @@ session_start();
 </body>
 
 </html>
+<style>
+    .content .right .table .search {
+        margin-right: 20px;
+        text-align: right; }
+        .content .right .table .search .form_search {
+          margin-bottom: 20px; }
+          .content .right .table .search .form_search .in_search {
+            height: 36px;
+            border-radius: 5px;
+            border: 1px solid #777777; }
+            .content .right .table .search .form_search .in_search:focus {
+              outline: unset; }
+          .content .right .table .search .form_search .sb_search {
+            border: unset;
+            height: 40px;
+            border-radius: 5px; }
+            .content .right .table .search .form_search .sb_search:focus {
+              outline: unset; }
+              .content .right .table .search .form_search .selec_search {
+            height: 36px;
+            border-radius: 5px;
+            border: 1px solid #777777; }
+            .content .right .table .search .form_search .selec_search:focus {
+              outline: unset; }
+</style>

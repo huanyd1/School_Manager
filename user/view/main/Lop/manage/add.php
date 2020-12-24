@@ -10,36 +10,44 @@ if (isset($_POST["process"])) {
     $idLop = '';
 
     $tenLop = $_POST["tenLop"];
-     $monhoc = $_POST["monhoc"];
-     $lopphu = $_POST["lopphu"];
 
     $idBomon = $_POST["idBomon"];
 
-    $img = $_FILES['imgUpload']['name'];
+    $sql_idLop = "SELECT * FROM `quanlytruonghoc`.`lop` WHERE `tenLop` = '$tenLop'";
+    //echo $sql_idLop;die;
 
-
-
-    
-
-
-    $path = "imgUpload/";
-
-    $tmp_name = $_FILES['imgUpload']['tmp_name'];
+    $query_idLop = mysqli_query($conn, $sql_idLop);
 
     $img = $_FILES['imgUpload']['name'];
+    if ($img !=null) {
+        $path = "imgUpload/";
 
+        $tmp_name = $_FILES['imgUpload']['tmp_name'];
 
+        $img = $_FILES['imgUpload']['name'];
 
-    move_uploaded_file($tmp_name, $path . $img);
+        move_uploaded_file($tmp_name, $path . $img);
+    }else{
+        $img = "thinh.jpg";
+    }
+    $count = mysqli_num_rows($query_idLop);
+    if ($count == 0) {
 
-    $sql = "INSERT INTO `quanlytruonghoc`.`lop` VALUES ('$idLop','$tenLop','$idBomon','$img','$monhoc','$lopphu')";
-    // var_dump($)
+        $sql = "INSERT INTO `quanlytruonghoc`.`lop` VALUES ('$idLop','$tenLop','$idBomon','$img')";
 
-    mysqli_query($conn, $sql);
+        mysqli_query($conn, $sql);
 
-    header('location:lop.php?page_layout=danhsach');
-    
-}
+        header('location:Lop.php?page_layout=danhsach');
+    } else {
+        echo "<script>var r = confirm(\"Tên đã có trong CSDL,vẫn muốn thêm?\"); 
+        if(r == true){
+            window.location.assign('http://localhost:444/BTL_PTUDW/user/view/main/Lop/lop.php?page_layout=loi&tenLop=$tenLop&idBomon=$idBomon&imgLop=$img')
+        }else{
+            history.back()
+        }
+        </script>";
+    }
+    }
 
 
 
@@ -117,22 +125,8 @@ if (isset($_POST["process"])) {
                             <input type="text" placeholder="Tên lớp mới" name="tenLop" required="required">
                         </div>
                     </div>
-                    <div class="form-input">
-                        <div class="text">
-                            <p>Môn Học</p>
-                        </div>
-                        <div class="input-right">
-                            <input type="text" placeholder="Tên môn học" name="monhoc" required="required">
-                        </div>
-                    </div>
-                    <div class="form-input">
-                        <div class="text">
-                            <p>Lớp Phụ</p>
-                        </div>
-                        <div class="input-right">
-                            <input type="text" placeholder="Tên Lớp Phụ" name="lopphu" required="required">
-                        </div>    
-                    </div>
+                   
+                    
                     <div class="form-input">
                         <div class="text">
                             <p>Ảnh Lớp</p>

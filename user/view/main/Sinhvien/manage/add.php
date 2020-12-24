@@ -20,6 +20,9 @@ if (isset($_POST["process"])) {
     $img = $_FILES['imgUpload']['name'];
 
 
+    $sql_idSinhvien = "SELECT * FROM `quanlytruonghoc`.`sinhvien` WHERE `tenSinhvien` = '$tenSinhvien' AND `idLop` = '$idLop'";
+
+    $query_idSinhvien = mysqli_query($conn, $sql_idLop);
 
     if ($img != null) {
 
@@ -29,13 +32,30 @@ if (isset($_POST["process"])) {
 
         $img = $_FILES['imgUpload']['name'];
 
-        move_uploaded_file($tmp_name, $path . $img);
 
-        $sql = "INSERT INTO `quanlytruonghoc`.`sinhvien` VALUES ('$idSinhvien','$tenSinhvien','$gioiTinh','$ngaySinh','$idLop','$img')";
+
+        move_uploaded_file($tmp_name, $path . $img);
+    }else{
+        $img = "logo-dhmo.jpg";
+    }
+
+
+    $count = mysqli_num_rows($query_idSinhvien);
+    if ($count == 0) {
+
+        $sql = "INSERT INTO `quanlytruonghoc`.`sinhvien` VALUES ('$idSinhvien','$tenSinhvien','$gioiTinh','$ngaySinh',$idLop,'$img')";
 
         mysqli_query($conn, $sql);
 
         header('location:sinhvien.php?page_layout=danhsach');
+    } else {
+        echo "<script>var r = confirm(\"Tên đã có trong CSDL,vẫn muốn thêm?\"); 
+        if(r == true){
+            window.location.assign('http://localhost:444/BTL_PTUDW/user/view/main/Sinhvien/sinhvien.php?page_layout=loi&tenSinhvien=$tenSinhvien&gioiTinh=$gioiTinh&ngaySinh=$ngaySinh&idLop=$idLop&imgSinhvien=$img')
+        }else{
+            history.back()
+        }
+        </script>";
     }
 }
 

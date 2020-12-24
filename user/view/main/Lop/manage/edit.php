@@ -130,22 +130,16 @@ if (isset($_POST["process"])) {
                             <input type="text" placeholder="Tên lớp" name="tenLop" value="<?php echo $row['tenLop']; ?>" name="tenLop">
                         </div>
                     </div>
-                    <div class="form-input">
-                        <div class="text">
-                            <p>Ảnh Lớp</p>
-                        </div>
-                        <div class="input-right">
-                            <img src="imgUpload/<?php echo $row['imgLop']; ?>" style="max-width: 100px;">
-                        </div>
-                    </div>
-                    <div class="form-input">
-                        <div class="text">
-                            <p></p>
-                        </div>
-                        <div class="input-right">
-                            <button style="display:block;width:120px; height:30px;" onclick="document.getElementById('getFile').click()">Thay ảnh mới</button>
-                            <input type='file' id="getFile" name="imgUpload" style="display:none"> </div>
-                    </div>
+                   <div class="form-input">
+                <div class="text">
+                    <p>Ảnh Khoa</p>
+                </div>
+                <div class="input-right">
+                <img src="imgUpload/<?php echo $row['imgKhoa']; ?>" style="max-width: 100px;">
+                <input type='file' id="getFile" name="imgUpload">                
+                </div>
+            </div>
+                   
                     <div class="form-input">
                         <div class="text">
                             <p>Lớp của Bộ môn</p>

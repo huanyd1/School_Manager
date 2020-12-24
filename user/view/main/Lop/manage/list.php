@@ -28,8 +28,17 @@ $query = mysqli_query($conn, $sql);
     <title>DANH SÁCH LỚP</title>
     <link rel="stylesheet" href="../../../css/khoa.css">
     <link rel="stylesheet" href="../../../css/styles.css">
-</head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
 
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js">
+    </script>
+</head>
+<script !src="">
+    $(document).ready( function () {
+        $('#table_id').DataTable();
+    } );
+</script>
 <body>
 
     <div class="header">
@@ -87,20 +96,22 @@ $query = mysqli_query($conn, $sql);
                             <select class="selec_search" name="danhmuc" required="required">
                                 <option value="">Tìm kiếm theo</option>
                                 <option value="1">Tên Lớp</option>
-                                <option value="2">Môn học</option>
+                               
                                 <option value="3">Mã Bộ Môn</option>
                             </select>
                             <input class="in_search" type="text" required="required" name="input_search" placeholder="Nhập từ khóa để tìm kiếm..."></input>
                             <input class="sb_search" type="submit" name="btnSub_search" value="Tìm kiếm" style="background-image: '../imgUpload/search.png';";/>
                         </form>
                     </div>
-
-                    <table >
+                    
+                    <table id="table_id">
 
                         <thead>
                         <tr>
                             <th>Mã Lớp</th>
                             <th>Tên Lớp</th>
+                           
+                    
                             <th>Ảnh Lớp</th>
                             <th>Mã Bộ Môn</th>
                             <th>Sửa</th>
@@ -114,6 +125,8 @@ $query = mysqli_query($conn, $sql);
                             <tr class="" bordercolor="#DCDCDC">
                                 <td><?php echo $row['idLop']; ?></td>
                                 <td><?php echo $row['tenLop']; ?></td>
+                               
+                                
                                 <td>
                                     <img style="width: 100px" src="imgUpload/<?php echo $row['imgLop']; ?>"></img>
                                 </td>

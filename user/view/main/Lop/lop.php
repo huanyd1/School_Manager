@@ -29,8 +29,10 @@
 					case 'xoa':
 						require_once 'manage/delete.php';
 						break;
-
-					default:
+					case 'loi':
+				        require_once 'manage/add_error.php';
+				        break;
+                        default:
 						require_once 'manage/list.php';
 						break;	
 				}

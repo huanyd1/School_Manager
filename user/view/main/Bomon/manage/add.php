@@ -15,13 +15,11 @@ if (isset($_POST["process"])) {
 
     $img = $_FILES['imgUpload']['name'];
 
+    $sql_idBomon = "SELECT * FROM `quanlytruonghoc`.`bomon` WHERE `tenBomon` = '$tenBomon' AND `idKhoa` = '$idKhoa'";
 
+    $query_idBomon = mysqli_query($conn, $sql_idBomon);
 
     if ($img != null) {
-
-
-
-
 
         $path = "imgUpload/";
 
@@ -31,16 +29,29 @@ if (isset($_POST["process"])) {
 
 
 
-        move_uploaded_file($tmp_name, $path.$img);
+        move_uploaded_file($tmp_name, $path . $img);
+    }else{
+        $img = "logo-dhmo.jpg";
+    }
+
+
+    $count = mysqli_num_rows($query_idBomon);
+    if ($count == 0) {
 
         $sql = "INSERT INTO `quanlytruonghoc`.`bomon` VALUES ('$idBomon','$tenBomon','$idKhoa','$img')";
 
         mysqli_query($conn, $sql);
 
         header('location:bomon.php?page_layout=danhsach');
-
+    } else {
+        echo "<script>var r = confirm(\"Tên đã có trong CSDL,vẫn muốn thêm?\"); 
+        if(r == true){
+            window.location.assign('http://localhost:444/BTL_PTUDW/user/view/main/Bomon/bomon.php?page_layout=loi&tenBomon=$tenBomon&idKhoa=$idKhoa&imgKhoa=$img')
+        }else{
+            history.back()
+        }
+        </script>";
     }
-
 }
 
 
@@ -132,7 +143,7 @@ if (isset($_POST["process"])) {
                             <p>Bộ môn của Khoa</p>
                         </div>
                         <div class="input-right">
-                            <select name="idMonhoc">
+                            <select name="idKhoa">
                                 <option value="">Tên Khoa</option>
                                 <?php
                                 while($row_idKhoa = mysqli_fetch_assoc($query_idKhoa)){?>
