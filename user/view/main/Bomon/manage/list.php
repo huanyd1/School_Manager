@@ -6,11 +6,11 @@ session_start();
 if (isset($_POST["btnSub_search"])) {
     $search = $_POST["input_search"];
     $danhmuc = $_POST["danhmuc"];
-    if($danhmuc==1){
+    if ($danhmuc == 1) {
         $sql = "SELECT * FROM `quanlytruonghoc`.`bomon` WHERE `idBomon` LIKE '%$search%'";
-    }elseif ($danhmuc==2){
+    } elseif ($danhmuc == 2) {
         $sql = "SELECT * FROM `quanlytruonghoc`.`bomon` WHERE `tenBomon` LIKE '%$search%'";
-    }else{
+    } else {
         $sql = "SELECT * FROM `quanlytruonghoc`.`bomon` WHERE `idKhoa` LIKE '%$search%'";
     }
 
@@ -38,10 +38,11 @@ if (isset($_POST["btnSub_search"])) {
     </script>
 </head>
 <script !src="">
-    $(document).ready( function () {
+    $(document).ready(function() {
         $('#table_id').DataTable();
-    } );
+    });
 </script>
+
 <body>
 
     <div class="header">
@@ -94,7 +95,7 @@ if (isset($_POST["btnSub_search"])) {
                     <h2>DANH SÁCH BỘ MÔN</h2>
                 </div>
                 <div class='table'>
-                <div class="search">
+                    <div class="search">
                         <form class="form_search" method="post" action="">
                             <select class="selec_search" name="danhmuc" required="required">
                                 <option value="">Tìm kiếm theo</option>
@@ -108,38 +109,38 @@ if (isset($_POST["btnSub_search"])) {
                     </div>
                     <table id="table_id">
                         <thead>
-                        <tr>
-                            <th>Mã Bộ Môn</th>
-                            <th>Tên Bộ Môn</th>
-                            <th>Ảnh</th>
-                            <th>Mã Khoa</th>
-                            <th>Sửa</th>
-                            <th>Xóa</th>
-                        </tr>
+                            <tr>
+                                <th>Mã Bộ Môn</th>
+                                <th>Tên Bộ Môn</th>
+                                <th>Ảnh</th>
+                                <th>Mã Khoa</th>
+                                <th>Sửa</th>
+                                <th>Xóa</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <?php
-                        $i = 1;
-                        while ($row = mysqli_fetch_assoc($query)) { ?>
-                            <tr class="" bordercolor="#DCDCDC">
-                                <td><?php echo $row['idBomon']; ?></td>
-                                <td><?php echo $row['tenBomon']; ?></td>
-                                <td>
-                                    <img style="width: 100px" src="imgUpload/<?php echo $row['imgBomon']; ?>"></img>
-                                </td>
-                                <td><?php echo $row['idKhoa']; ?></td>
-                                <td>
-                                    <a href="bomon.php?page_layout=sua&idBomon=<?php echo $row['idBomon']; ?>">
-                                        <img src="imgUpload/edit.png" alt="">
-                                    </a>
-                                </td>
-                                <td>
-                                    <a onclick="return window.confirm('Bạn có thực sự muốn xóa Bộ môn không?');" href="bomon.php?page_layout=xoa&idBomon=<?php echo $row['idBomon']; ?>">
-                                        <img src="imgUpload/del.png" alt="">
-                                    </a>
-                                </td>
-                            </tr>
-                        <?php } ?>
+                            <?php
+                            $i = 1;
+                            while ($row = mysqli_fetch_assoc($query)) { ?>
+                                <tr class="" bordercolor="#DCDCDC">
+                                    <td><?php echo $row['idBomon']; ?></td>
+                                    <td><?php echo $row['tenBomon']; ?></td>
+                                    <td>
+                                        <img style="width: 100px" src="imgUpload/<?php echo $row['imgBomon']; ?>"></img>
+                                    </td>
+                                    <td><?php echo $row['idKhoa']; ?></td>
+                                    <td>
+                                        <a href="bomon.php?page_layout=sua&idBomon=<?php echo $row['idBomon']; ?>">
+                                            <img src="imgUpload/edit.png" alt="">
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a onclick="return window.confirm('Bạn có thực sự muốn xóa Bộ môn không?');" href="bomon.php?page_layout=xoa&idBomon=<?php echo $row['idBomon']; ?>">
+                                            <img src="imgUpload/del.png" alt="">
+                                        </a>
+                                    </td>
+                                </tr>
+                            <?php } ?>
 
                         </tbody>
                     </table>
